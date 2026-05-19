@@ -1,0 +1,1977 @@
+!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DailyLink - Daily Task Manager</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+         <div class="price"><strong>$0</strong><span>starter</span></div>
+                        <ul class="plan-list">
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>3 groups</span></li>
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>25 URLs</span></li>
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>No reminders or export</span></li>
+                        </ul>
+                    </article>
+                    <article class="price-card">
+                        <h3>Lifetime</h3>
+                        <div class="price"><strong>$20</strong><span>one time</span></div>
+                        <ul class="plan-list">
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>Unlimited groups and URLs</span></li>
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>Daily open-all workflow</span></li>
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>Due dates, reminders, search, filters</span></li>
+                            <li><span class="material-icons" aria-hidden="true">check_circle</span><span>Import/export and lifetime updates</span></li>
+                        </ul>
+                        <a class="primary-button" href="mailto:support@example.com?subject=DailyLink%20Lifetime%20Deal">
+                            <span class="material-icons" aria-hidden="true">payments</span>
+                            <span>Claim lifetime access</span>
+                        </a>
+                    </article>
+                    <article class="price-card">
+                        <h3>What comes next</h3>
+                        <p>Before selling publicly, wire Firebase Auth, per-user database paths, locked security rules, and a real payment provider like Stripe or Lemon Squeezy.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-band" id="privacy">
+            <div class="landing-inner">
+                <div class="section-head">
+                    <p class="eyebrow">FAQ and privacy</p>
+                    <h2>Trust basics for a paid tool.</h2>
+                </div>
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h3>Can I export my data?</h3>
+                        <p>Yes. The app exports JSON for backup and CSV for spreadsheets.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Does it work like an app?</h3>
+                        <p>Yes. It includes PWA manifest and service worker files for mobile and desktop install.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Is login included?</h3>
+                        <p>Not yet. The current version is frontend-first. Add Firebase Auth before taking payments.</p>
+                    </article>
+                </div>
+                <div class="privacy-panel" style="margin-top: 12px;">
+                    <h3>Privacy policy</h3>
+                    <p>DailyLink stores task groups, URLs, titles, notes, due dates, and completion states in Firebase Realtime Database. Browser notification permission stays in the browser. Before selling, add per-user authentication and security rules so each customer can only read and write their own data.</p>
+                    <p style="margin-top: 10px;">Support: <a href="mailto:support@example.com">support@example.com</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main class="app-shell">
+        <aside class="sidebar" aria-label="Task groups">
+            <section class="profile">
+                <div class="profile-top">
+                    <a class="brand" href="#landing" id="backToLanding">
+                        <span class="brand-mark">
+                            <span class="material-icons" aria-hidden="true">task_alt</span>
+                        </span>
+                        <span>DailyLink</span>
+                    </a>
+                    <button type="button" class="icon-button" id="appThemeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                        <span class="material-icons" aria-hidden="true">dark_mode</span>
+                    </button>
+                </div>
+                <p class="eyebrow">Daily Task</p>
+                <h2>Hello Nishant</h2>
+                <div class="gas-pill" id="gwei">
+                    <span class="material-icons" aria-hidden="true">local_gas_station</span>
+                    <span id="gasText">Loading Gwei...</span>
+                    <svg id="gasSparkline" viewBox="0 0 76 24" aria-hidden="true"></svg>
+                </div>
+            </section>
+
+            <section class="sidebar-tools">
+                <div class="field">
+                    <label for="groupInput">Add group</label>
+                    <div class="input-row">
+                        <span class="material-icons" aria-hidden="true">add_circle</span>
+                        <input type="text" id="groupInput" autocomplete="off" placeholder="Type group and press Enter">
+                    </div>
+                </div>
+                <p class="help-text">Ctrl + click a group to mark it finished. New groups have daily reset turned on.</p>
+            </section>
+
+            <section class="template-wrap" aria-label="Templates">
+                <div class="list-heading">
+                    <span>Templates</span>
+                    <span class="material-icons" aria-hidden="true">auto_awesome</span>
+                </div>
+                <div class="template-grid" id="templateList"></div>
+            </section>
+
+            <section class="import-export-wrap" aria-label="Import and export">
+                <div class="list-heading">
+                    <span>Import / Export</span>
+                    <span class="material-icons" aria-hidden="true">sync_alt</span>
+                </div>
+                <div class="utility-grid">
+                    <button type="button" class="chip-button" id="importButton">
+                        <span class="material-icons" aria-hidden="true">upload_file</span>
+                        <span>Import</span>
+                    </button>
+                    <button type="button" class="chip-button" id="exportJsonButton">
+                        <span class="material-icons" aria-hidden="true">data_object</span>
+                        <span>JSON</span>
+                    </button>
+                    <button type="button" class="chip-button" id="exportCsvButton">
+                        <span class="material-icons" aria-hidden="true">table_view</span>
+                        <span>CSV</span>
+                    </button>
+                    <button type="button" class="chip-button" id="seedTemplatesButton">
+                        <span class="material-icons" aria-hidden="true">library_add</span>
+                        <span>All</span>
+                    </button>
+                </div>
+                <input class="sr-only" type="file" id="importFile" accept=".json,.csv,.html,.htm,text/csv,application/json,text/html">
+            </section>
+
+            <section class="group-list-wrap">
+                <div class="list-heading">
+                    <span>Groups</span>
+                    <span class="count-badge" id="groupCount">0</span>
+                </div>
+                <ul id="sidebar" class="group-list"></ul>
+            </section>
+        </aside>
+
+        <section class="workspace" aria-label="Task links">
+            <header class="workspace-header">
+                <div class="workspace-title">
+                    <p class="eyebrow" id="activeGroupEyebrow">No group selected</p>
+                    <h1 id="activeGroupTitle">Choose a group</h1>
+                    <p id="activeGroupSubtitle">Create or select a group, then add links you want to work through.</p>
+                </div>
+                <div class="summary-zone" aria-label="Task summary">
+                    <div class="summary-strip">
+                        <div class="summary-card">
+                            <strong id="totalCount">0</strong>
+                            <span>Total</span>
+                        </div>
+                        <div class="summary-card">
+                            <strong id="openCount">0</strong>
+                            <span>Open</span>
+                        </div>
+                        <div class="summary-card">
+                            <strong id="doneCount">0</strong>
+                            <span>Done</span>
+                        </div>
+                        <div class="summary-card">
+                            <strong id="dueCount">0</strong>
+                            <span>Due</span>
+                        </div>
+                    </div>
+                    <div class="progress-shell" title="Completion progress">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="task-tools">
+                <div class="field">
+                    <label for="urlInput">Add URL</label>
+                    <div class="input-row">
+                        <span class="material-icons" aria-hidden="true">link</span>
+                        <input type="text" id="urlInput" autocomplete="off" placeholder="Paste URL and press Enter">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="searchInput">Search</label>
+                    <div class="input-row">
+                        <span class="material-icons" aria-hidden="true">search</span>
+                        <input type="search" id="searchInput" autocomplete="off" placeholder="Search title, URL, or notes">
+                    </div>
+                </div>
+                <div class="tool-actions">
+                    <button type="button" class="secondary-button" id="reminderButton">
+                        <span class="material-icons" aria-hidden="true">notifications</span>
+                        <span>Reminders</span>
+                    </button>
+                    <button type="button" class="primary-button" id="openAllButton" disabled>
+                        <span class="material-icons" aria-hidden="true">open_in_new</span>
+                        <span>Open active</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="filter-row" aria-label="Task filters">
+                <button type="button" class="tab-button is-active" data-filter="all">All</button>
+                <button type="button" class="tab-button" data-filter="active">Active</button>
+                <button type="button" class="tab-button" data-filter="completed">Completed</button>
+                <button type="button" class="tab-button" data-filter="due">Due Soon</button>
+                <button type="button" class="tab-button" data-filter="expired">Expired</button>
+                <div class="group-options">
+                    <label class="switch" title="Reset completed tasks every morning for this group">
+                        <input type="checkbox" id="dailyResetToggle" disabled>
+                        <span>Daily reset</span>
+                    </label>
+                    <button type="button" class="secondary-button" id="installButton" hidden>
+                        <span class="material-icons" aria-hidden="true">install_mobile</span>
+                        <span>Install</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="task-board">
+                <ul id="urlList" class="task-list"></ul>
+            </section>
+        </section>
+    </main>
+
+    <div class="modal-backdrop" id="editModal" hidden>
+        <form class="modal" id="editForm">
+            <div class="modal-header">
+                <h2>Edit task</h2>
+                <button type="button" class="icon-button" id="closeEditButton" aria-label="Close editor">
+                    <span class="material-icons" aria-hidden="true">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editTaskKey">
+                <div class="field">
+                    <label for="editTitle">Title</label>
+                    <input type="text" id="editTitle" placeholder="Task title">
+                </div>
+                <div class="field">
+                    <label for="editUrl">URL</label>
+                    <input type="url" id="editUrl" placeholder="https://example.com">
+                </div>
+                <div class="field">
+                    <label for="editNotes">Notes</label>
+                    <textarea id="editNotes" placeholder="Optional notes"></textarea>
+                </div>
+                <div class="field">
+                    <label for="editDate">Due date</label>
+                    <input type="date" id="editDate">
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="editResetDaily">
+                    <span>Reset this task daily when group reset is on</span>
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="secondary-button" id="cancelEditButton">Cancel</button>
+                <button type="submit" class="primary-button">Save changes</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <span id="toastMessage"></span>
+        <button type="button" id="toastAction" hidden>Undo</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, get, push, set, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJSpQPp0ls-xK8YShFEX75VRHWkzYCCZg",
+            authDomain: "dailytask-2dd88.firebaseapp.com",
+            databaseURL: "https://dailytask-2dd88-default-rtdb.firebaseio.com",
+            projectId: "dailytask-2dd88",
+            storageBucket: "dailytask-2dd88.appspot.com",
+            messagingSenderId: "262250599266",
+            appId: "1:262250599266:web:fae89e66228ad3418dd23b",
+            measurementId: "G-2254PBYC96"
+        };
+
+        const DUE_SOON_DAYS = 5;
+
+        const TEMPLATES = [
+            {
+                name: "Crypto research",
+                key: "CRYPTO RESEARCH",
+                tasks: [
+                    ["CoinGecko trending coins", "https://www.coingecko.com/en/discover", "Check market narratives and watchlist changes."],
+                    ["Etherscan gas tracker", "https://etherscan.io/gastracker", "Watch gas before moving funds."],
+                    ["DeFiLlama protocols", "https://defillama.com", "Review TVL and category shifts."],
+                    ["Token Unlocks", "https://token.unlocks.app", "Check upcoming unlock risk."]
+                ]
+            },
+            {
+                name: "Job search",
+                key: "JOB SEARCH",
+                tasks: [
+                    ["LinkedIn jobs", "https://www.linkedin.com/jobs", "Review saved searches and apply."],
+                    ["Wellfound", "https://wellfound.com/jobs", "Startup roles."],
+                    ["Remote OK", "https://remoteok.com", "Remote-first roles."],
+                    ["Resume file", "https://docs.google.com", "Update resume and cover notes."]
+                ]
+            },
+            {
+                name: "Client work",
+                key: "CLIENT WORK",
+                tasks: [
+                    ["Gmail inbox", "https://mail.google.com", "Check client replies."],
+                    ["Google Drive", "https://drive.google.com", "Open client docs."],
+                    ["Calendar", "https://calendar.google.com", "Confirm meetings and deadlines."],
+                    ["Invoice tracker", "https://sheets.google.com", "Update invoices and payments."]
+                ]
+            },
+            {
+                name: "Study routine",
+                key: "STUDY ROUTINE",
+                tasks: [
+                    ["YouTube learning queue", "https://www.youtube.com/feed/playlists", "Continue saved lessons."],
+                    ["Notion notes", "https://www.notion.so", "Review notes and next topics."],
+                    ["ChatGPT study helper", "https://chat.openai.com", "Ask questions and make quizzes."],
+                    ["Google Scholar", "https://scholar.google.com", "Find references."]
+                ]
+            },
+            {
+                name: "Daily social posting",
+                key: "DAILY SOCIAL POSTING",
+                tasks: [
+                    ["X drafts", "https://x.com", "Post or schedule one useful update."],
+                    ["LinkedIn feed", "https://www.linkedin.com/feed", "Publish professional post."],
+                    ["Canva designs", "https://www.canva.com", "Prepare visual asset."],
+                    ["Analytics", "https://analytics.google.com", "Review what performed."]
+                ]
+            },
+            {
+                name: "Airdrop checklist",
+                key: "AIRDROP CHECKLIST",
+                tasks: [
+                    ["Galxe quests", "https://app.galxe.com", "Check available campaigns."],
+                    ["Layer3 quests", "https://app.layer3.xyz", "Complete daily quests."],
+                    ["Zealy dashboard", "https://zealy.io", "Review community tasks."],
+                    ["Wallet safety check", "https://revoke.cash", "Revoke old approvals."]
+                ]
+            }
+        ];
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const elements = {
+            body: document.body,
+            landingThemeToggle: document.getElementById("landingThemeToggle"),
+            appThemeToggle: document.getElementById("appThemeToggle"),
+            backToLanding: document.getElementById("backToLanding"),
+            groupInput: document.getElementById("groupInput"),
+            urlInput: document.getElementById("urlInput"),
+            searchInput: document.getElementById("searchInput"),
+            sidebar: document.getElementById("sidebar"),
+            urlList: document.getElementById("urlList"),
+            openAllButton: document.getElementById("openAllButton"),
+            reminderButton: document.getElementById("reminderButton"),
+            installButton: document.getElementById("installButton"),
+            toast: document.getElementById("toast"),
+            toastMessage: document.getElementById("toastMessage"),
+            toastAction: document.getElementById("toastAction"),
+            groupCount: document.getElementById("groupCount"),
+            templateList: document.getElementById("templateList"),
+            importButton: document.getElementById("importButton"),
+            importFile: document.getElementById("importFile"),
+            exportJsonButton: document.getElementById("exportJsonButton"),
+            exportCsvButton: document.getElementById("exportCsvButton"),
+            seedTemplatesButton: document.getElementById("seedTemplatesButton"),
+            activeGroupEyebrow: document.getElementById("activeGroupEyebrow"),
+            activeGroupTitle: document.getElementById("activeGroupTitle"),
+            activeGroupSubtitle: document.getElementById("activeGroupSubtitle"),
+            totalCount: document.getElementById("totalCount"),
+            openCount: document.getElementById("openCount"),
+            doneCount: document.getElementById("doneCount"),
+            dueCount: document.getElementById("dueCount"),
+            progressFill: document.getElementById("progressFill"),
+            dailyResetToggle: document.getElementById("dailyResetToggle"),
+            filterButtons: Array.from(document.querySelectorAll("[data-filter]")),
+            editModal: document.getElementById("editModal"),
+            editForm: document.getElementById("editForm"),
+            editTaskKey: document.getElementById("editTaskKey"),
+            editTitle: document.getElementById("editTitle"),
+            editUrl: document.getElementById("editUrl"),
+            editNotes: document.getElementById("editNotes"),
+            editDate: document.getElementById("editDate"),
+            editResetDaily: document.getElementById("editResetDaily"),
+            closeEditButton: document.getElementById("closeEditButton"),
+            cancelEditButton: document.getElementById("cancelEditButton"),
+            gasPill: document.getElementById("gwei"),
+            gasText: document.getElementById("gasText"),
+            gasSparkline: document.getElementById("gasSparkline")
+        };
+
+        let selectedGroup = localStorage.getItem("group") || "";
+        let selectedGroupMeta = { done: false, dailyReset: true };
+        let listOfKeys = [];
+        let listOfUrls = [];
+        let currentFilter = "all";
+        let searchQuery = "";
+        let toastTimeout;
+        let deferredInstallPrompt;
+        let draggedTaskKey = "";
+        let gasHistory = JSON.parse(localStorage.getItem("gasHistory") || "[]").slice(-18);
+
+        initializeTheme();
+        initializeView();
+        renderTemplates();
+        bindEvents();
+        await loadGroup();
+        await loadUrl();
+        getGas();
+        setInterval(getGas, 15000);
+        startReminderLoop();
+        registerServiceWorker();
+
+        function bindEvents() {
+            window.addEventListener("hashchange", initializeView);
+            window.addEventListener("beforeinstallprompt", (event) => {
+                event.preventDefault();
+                deferredInstallPrompt = event;
+                elements.installButton.hidden = false;
+            });
+
+            elements.landingThemeToggle.addEventListener("click", toggleTheme);
+            elements.appThemeToggle.addEventListener("click", toggleTheme);
+            elements.backToLanding.addEventListener("click", (event) => {
+                event.preventDefault();
+                location.hash = "landing";
+            });
+
+            elements.groupInput.addEventListener("keydown", handleGroupInput);
+            elements.urlInput.addEventListener("keydown", handleUrlInput);
+            elements.searchInput.addEventListener("input", () => {
+                searchQuery = elements.searchInput.value.trim();
+                renderTasks();
+            });
+
+            elements.openAllButton.addEventListener("click", () => openUrls());
+            elements.reminderButton.addEventListener("click", enableNotifications);
+            elements.installButton.addEventListener("click", installPwa);
+            elements.importButton.addEventListener("click", () => elements.importFile.click());
+            elements.importFile.addEventListener("change", handleImportFile);
+            elements.exportJsonButton.addEventListener("click", exportJson);
+            elements.exportCsvButton.addEventListener("click", exportCsv);
+            elements.seedTemplatesButton.addEventListener("click", seedAllTemplates);
+
+            elements.dailyResetToggle.addEventListener("change", updateDailyResetSetting);
+
+            elements.filterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    currentFilter = button.dataset.filter;
+                    elements.filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+                    renderTasks();
+                });
+            });
+
+            elements.closeEditButton.addEventListener("click", closeEditor);
+            elements.cancelEditButton.addEventListener("click", closeEditor);
+            elements.editModal.addEventListener("click", (event) => {
+                if (event.target === elements.editModal) {
+                    closeEditor();
+                }
+            });
+            elements.editForm.addEventListener("submit", saveEditedTask);
+
+            document.addEventListener("keydown", (event) => {
+                const key = event.key.toLowerCase();
+                const isInput = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName);
+
+                if ((event.ctrlKey || event.metaKey) && key === "k") {
+                    event.preventDefault();
+                    location.hash = "app";
+                    elements.searchInput.focus();
+                }
+
+                if (event.key === "Escape") {
+                    if (!elements.editModal.hidden) {
+                        closeEditor();
+                        return;
+                    }
+
+                    if (!isInput && searchQuery) {
+                        elements.searchInput.value = "";
+                        searchQuery = "";
+                        renderTasks();
+                    }
+                }
+            });
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem("theme") || "light";
+            elements.body.dataset.theme = savedTheme;
+            updateThemeIcons(savedTheme);
+        }
+
+        function toggleTheme() {
+            const nextTheme = elements.body.dataset.theme === "dark" ? "light" : "dark";
+            elements.body.dataset.theme = nextTheme;
+            localStorage.setItem("theme", nextTheme);
+            updateThemeIcons(nextTheme);
+        }
+
+        function updateThemeIcons(theme) {
+            const icon = theme === "dark" ? "light_mode" : "dark_mode";
+            elements.landingThemeToggle.querySelector(".material-icons").textContent = icon;
+            elements.appThemeToggle.querySelector(".material-icons").textContent = icon;
+        }
+
+        function initializeView() {
+            elements.body.dataset.view = location.hash === "#app" ? "app" : "landing";
+        }
+
+        function renderTemplates() {
+            elements.templateList.innerHTML = "";
+            TEMPLATES.forEach((template) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "chip-button";
+                button.innerHTML = `<span class="material-icons" aria-hidden="true">add</span><span>${template.name}</span>`;
+                button.addEventListener("click", () => createTemplateGroup(template));
+                elements.templateList.appendChild(button);
+            });
+        }
+
+        async function handleGroupInput(event) {
+            if (event.key !== "Enter") {
+                return;
+            }
+
+            const groupName = elements.groupInput.value.trim().toUpperCase();
+
+            if (!groupName) {
+                return;
+            }
+
+            event.preventDefault();
+
+            if (!isValidFirebaseKey(groupName)) {
+                showToast("Group names cannot contain . # $ / [ or ].");
+                return;
+            }
+
+            try {
+                await set(ref(db, `groups/${groupName}`), { done: false, dailyReset: true, createdAt: Date.now() });
+                selectedGroup = groupName;
+                selectedGroupMeta = { done: false, dailyReset: true };
+                localStorage.setItem("group", groupName);
+                elements.groupInput.value = "";
+                await loadGroup();
+                await loadUrl();
+                showToast(`Group "${groupName}" is ready.`);
+            } catch (error) {
+                console.error(error);
+                showToast("Could not save the group.");
+            }
+        }
+
+        async function handleUrlInput(event) {
+            if (event.key !== "Enter") {
+                return;
+            }
+
+            const rawValue = elements.urlInput.value.trim();
+
+            if (!rawValue) {
+                return;
+            }
+
+            event.preventDefault();
+
+            if (!selectedGroup) {
+                showToast("Select a group first.");
+                return;
+            }
+
+            const urlValue = normalizeUrl(rawValue.includes("{") ? saveVariable(rawValue) : rawValue);
+
+            if (checkIfExists(urlValue)) {
+                showToast("That URL already exists in this group.");
+                return;
+            }
+
+            showToast("Fetching title and favicon...");
+
+            try {
+                const metadata = await getUrlMetadata(urlValue);
+                await push(ref(db, `tasks/${selectedGroup}`), {
+                    url: urlValue,
+                    title: metadata.title,
+                    favicon: metadata.favicon,
+                    notes: "",
+                    completed: false,
+                    completedAt: "",
+                    endDate: "",
+                    resetDaily: true,
+                    order: Date.now(),
+                    createdAt: Date.now(),
+                    updatedAt: Date.now()
+                });
+
+                elements.urlInput.value = "";
+                await loadUrl();
+                showToast("URL added.");
+            } catch (error) {
+                console.error(error);
+                showToast("Could not save the URL.");
+            }
+        }
+
+        async function loadGroup() {
+            try {
+                const [groupSnapshot, tasksSnapshot] = await Promise.all([
+                    get(ref(db, "groups")),
+                    get(ref(db, "tasks"))
+                ]);
+
+                elements.sidebar.innerHTML = "";
+
+                if (!groupSnapshot.exists()) {
+                    selectedGroup = "";
+                    localStorage.removeItem("group");
+                    elements.groupCount.textContent = "0";
+                    elements.sidebar.appendChild(createSidebarEmptyState());
+                    return;
+                }
+
+                const taskCounts = getTaskCounts(tasksSnapshot);
+                let count = 0;
+                let selectedGroupStillExists = false;
+
+                groupSnapshot.forEach((item) => {
+                    count++;
+
+                    const groupMeta = normalizeGroup(item.val());
+                    if (selectedGroup === item.key) {
+                        selectedGroupStillExists = true;
+                        selectedGroupMeta = groupMeta;
+                    }
+
+                    const li = document.createElement("li");
+                    li.className = "group-item";
+                    li.title = item.key;
+
+                    if (selectedGroup === item.key) {
+                        li.classList.add("is-active");
+                    }
+
+                    if (groupMeta.done) {
+                        li.classList.add("is-done");
+                    }
+
+                    const name = document.createElement("span");
+                    name.className = "group-name";
+                    name.textContent = item.key;
+
+                    const badge = document.createElement("span");
+                    badge.className = "group-task-badge";
+                    badge.textContent = taskCounts[item.key] || 0;
+                    badge.title = `${taskCounts[item.key] || 0} tasks`;
+
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.className = "icon-button danger";
+                    button.title = `Delete ${item.key}`;
+                    button.setAttribute("aria-label", `Delete ${item.key}`);
+                    button.innerHTML = '<span class="material-icons" aria-hidden="true">delete</span>';
+                    button.addEventListener("click", async (event) => {
+                        event.stopPropagation();
+                        await deleteGroup(item.key, groupMeta);
+                    });
+
+                    li.appendChild(name);
+                    li.appendChild(badge);
+                    li.appendChild(button);
+
+                    li.addEventListener("click", async (event) => {
+                        try {
+                            if (event.ctrlKey || event.metaKey) {
+                                await set(ref(db, `groups/${item.key}`), { ...groupMeta, done: !groupMeta.done, updatedAt: Date.now() });
+                                await loadGroup();
+                                return;
+                            }
+
+                            selectedGroup = item.key;
+                            selectedGroupMeta = groupMeta;
+                            localStorage.setItem("group", item.key);
+                            await loadGroup();
+                            await loadUrl();
+                        } catch (error) {
+                            console.error(error);
+                            showToast("Could not update the group.");
+                        }
+                    });
+
+                    elements.sidebar.appendChild(li);
+                });
+
+                elements.groupCount.textContent = count;
+
+                if (selectedGroup && !selectedGroupStillExists) {
+                    selectedGroup = "";
+                    selectedGroupMeta = { done: false, dailyReset: true };
+                    localStorage.removeItem("group");
+                }
+            } catch (error) {
+                console.error(error);
+                elements.sidebar.innerHTML = "";
+                elements.groupCount.textContent = "0";
+                elements.sidebar.appendChild(createSidebarEmptyState());
+                showToast("Could not load groups.");
+            }
+        }
+
+        async function loadUrl() {
+            const today = startOfToday();
+            listOfKeys = [];
+            listOfUrls = [];
+            elements.urlList.innerHTML = "";
+            showTaskSkeleton();
+
+            if (!selectedGroup) {
+                renderHeaderState();
+                renderTaskSummary(0, 0, 0, 0);
+                elements.openAllButton.disabled = true;
+                elements.dailyResetToggle.disabled = true;
+                elements.urlList.innerHTML = "";
+                elements.urlList.appendChild(createEmptyState("playlist_add", "No group selected", "Choose a group on the left or create a new one to start saving URLs."));
+                return;
+            }
+
+            try {
+                let querySnapshot = await get(ref(db, `tasks/${selectedGroup}`));
+
+                if (querySnapshot.exists() && await resetCompletedTasksIfNeeded(querySnapshot)) {
+                    querySnapshot = await get(ref(db, `tasks/${selectedGroup}`));
+                }
+
+                elements.urlList.innerHTML = "";
+
+                if (!querySnapshot.exists()) {
+                    renderHeaderState();
+                    renderTaskSummary(0, 0, 0, 0);
+                    elements.openAllButton.disabled = true;
+                    elements.dailyResetToggle.disabled = false;
+                    elements.dailyResetToggle.checked = selectedGroupMeta.dailyReset;
+                    elements.urlList.appendChild(createEmptyState("add_link", "No URLs yet", "Paste a URL above and press Enter. You can also use variables like https://github.com/{repo:nishant/project}."));
+                    return;
+                }
+
+                const rows = [];
+                querySnapshot.forEach((item) => {
+                    rows.push({ key: item.key, task: normalizeTask(item.val()) });
+                });
+
+                rows.sort((a, b) => (a.task.order || 0) - (b.task.order || 0));
+                listOfKeys = rows.map((row) => row.key);
+                listOfUrls = rows.map((row) => row.task);
+
+                renderHeaderState();
+                renderTasks();
+                checkReminders();
+            } catch (error) {
+                console.error(error);
+                elements.urlList.innerHTML = "";
+                renderHeaderState();
+                renderTaskSummary(0, 0, 0, 0);
+                elements.openAllButton.disabled = true;
+                elements.urlList.appendChild(createEmptyState("cloud_off", "Could not load URLs", "Check your internet connection or Firebase permissions."));
+                showToast("Could not load URLs.");
+            }
+        }
+
+        function renderTasks() {
+            const today = startOfToday();
+            const rows = listOfUrls.map((task, index) => ({ key: listOfKeys[index], task }));
+            const visibleRows = rows.filter(({ task }) => taskMatchesFilter(task, today) && taskMatchesSearch(task));
+            const stats = getStats(rows, today);
+
+            elements.urlList.innerHTML = "";
+            renderTaskSummary(stats.total, stats.open, stats.done, stats.dueSoon + stats.expired);
+            elements.dailyResetToggle.disabled = !selectedGroup;
+            elements.dailyResetToggle.checked = selectedGroupMeta.dailyReset;
+            elements.openAllButton.disabled = rows.every(({ task }) => task.completed || !isOpenableUrl(task.url));
+
+            if (!selectedGroup) {
+                elements.urlList.appendChild(createEmptyState("playlist_add", "No group selected", "Choose a group on the left or create a new one to start saving URLs."));
+                return;
+            }
+
+            if (!visibleRows.length) {
+                const title = searchQuery ? "No matching URLs" : "Nothing in this view";
+                const message = searchQuery ? "Try a different search term or clear the filter." : "Switch filters or add a new URL.";
+                elements.urlList.appendChild(createEmptyState("manage_search", title, message));
+                return;
+            }
+
+            visibleRows.forEach(({ task, key }) => {
+                elements.urlList.appendChild(createTaskItem(task, key, today));
+            });
+        }
+
+        function createTaskItem(task, taskKey, today) {
+            const li = document.createElement("li");
+            li.className = "task-item";
+            li.draggable = canDrag();
+            li.dataset.key = taskKey;
+
+            li.addEventListener("dragstart", (event) => {
+                if (!canDrag()) {
+                    event.preventDefault();
+                    return;
+                }
+                draggedTaskKey = taskKey;
+                li.classList.add("is-dragging");
+                event.dataTransfer.effectAllowed = "move";
+                event.dataTransfer.setData("text/plain", taskKey);
+            });
+
+            li.addEventListener("dragend", () => {
+                draggedTaskKey = "";
+                li.classList.remove("is-dragging");
+                clearDropTargets();
+            });
+
+            li.addEventListener("dragover", (event) => {
+                if (!canDrag() || !draggedTaskKey || draggedTaskKey === taskKey) {
+                    return;
+                }
+                event.preventDefault();
+                li.classList.add("is-drop-target");
+            });
+
+            li.addEventListener("dragleave", () => li.classList.remove("is-drop-target"));
+            li.addEventListener("drop", async (event) => {
+                event.preventDefault();
+                li.classList.remove("is-drop-target");
+                const sourceKey = event.dataTransfer.getData("text/plain") || draggedTaskKey;
+                if (sourceKey && sourceKey !== taskKey) {
+                    await reorderTasks(sourceKey, taskKey);
+                }
+            });
+
+            const dragHandle = document.createElement("button");
+            dragHandle.type = "button";
+            dragHandle.className = "drag-handle";
+            dragHandle.disabled = !canDrag();
+            dragHandle.title = canDrag() ? "Drag to reorder" : "Clear search and filters to reorder";
+            dragHandle.setAttribute("aria-label", dragHandle.title);
+            dragHandle.innerHTML = '<span class="material-icons" aria-hidden="true">drag_indicator</span>';
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.completed;
+            checkbox.setAttribute("aria-label", `Mark ${getTaskDisplayTitle(task)} completed`);
+            checkbox.addEventListener("change", async () => {
+                await updateTask(taskKey, {
+                    ...task,
+                    completed: checkbox.checked,
+                    completedAt: checkbox.checked ? Date.now() : "",
+                    updatedAt: Date.now()
+                }, "Task updated.");
+            });
+
+            const favicon = document.createElement("img");
+            favicon.className = "task-favicon";
+            favicon.alt = "";
+            favicon.loading = "lazy";
+            favicon.src = task.favicon || getFaviconUrl(task.url);
+            favicon.onerror = () => {
+                favicon.src = "./icon.svg";
+            };
+
+            const main = document.createElement("div");
+            main.className = "task-main";
+
+            const link = document.createElement("a");
+            link.href = replaceVariable(task.url);
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.className = `task-title ${getDateStatusClass(task.endDate, today)}`;
+            link.title = replaceVariable(task.url);
+            appendHighlightedText(link, getTaskDisplayTitle(task), searchQuery);
+
+            if (task.completed) {
+                link.classList.add("is-completed");
+            }
+
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                openUrls(task.url);
+            });
+
+            const urlLine = document.createElement("div");
+            urlLine.className = "task-url";
+            appendHighlightedText(urlLine, getReadableUrl(task.url), searchQuery);
+
+            main.appendChild(link);
+            main.appendChild(urlLine);
+
+            if (task.notes) {
+                const notes = document.createElement("div");
+                notes.className = "task-notes";
+                appendHighlightedText(notes, task.notes, searchQuery);
+                main.appendChild(notes);
+            }
+
+            const meta = document.createElement("div");
+            meta.className = "task-meta";
+
+            const displayDate = document.createElement("span");
+            displayDate.className = `date-pill ${getDatePillClass(task.endDate, today)}`;
+            displayDate.textContent = millisToDDMMYY(task.endDate) || "No date";
+
+            const resetPill = document.createElement("span");
+            resetPill.className = "status-pill";
+            resetPill.textContent = task.resetDaily ? "Daily" : "Manual";
+
+            const actions = document.createElement("span");
+            actions.className = "task-actions";
+
+            const editButton = createIconButton("edit", "Edit URL", () => openEditor(taskKey, task));
+            const deleteButton = createIconButton("delete", "Delete URL", async () => {
+                li.classList.add("is-removing");
+                window.setTimeout(() => deleteTask(taskKey, task), 180);
+            }, "danger");
+
+            actions.appendChild(editButton);
+            actions.appendChild(deleteButton);
+            meta.appendChild(displayDate);
+            meta.appendChild(resetPill);
+            meta.appendChild(actions);
+
+            li.appendChild(dragHandle);
+            li.appendChild(checkbox);
+            li.appendChild(favicon);
+            li.appendChild(main);
+            li.appendChild(meta);
+
+            return li;
+        }
+
+        function createIconButton(icon, label, onClick, variant = "") {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = `icon-button ${variant}`.trim();
+            button.title = label;
+            button.setAttribute("aria-label", label);
+            button.innerHTML = `<span class="material-icons" aria-hidden="true">${icon}</span>`;
+            button.addEventListener("click", onClick);
+            return button;
+        }
+
+        function createEmptyState(icon, title, message) {
+            const li = document.createElement("li");
+            li.className = "empty-state";
+            const wrapper = document.createElement("div");
+            const art = document.createElement("div");
+            art.className = "empty-art";
+            art.innerHTML = `<span class="material-icons" aria-hidden="true">${icon}</span>`;
+            const heading = document.createElement("h3");
+            heading.textContent = title;
+            const text = document.createElement("p");
+            text.textContent = message;
+            wrapper.appendChild(art);
+            wrapper.appendChild(heading);
+            wrapper.appendChild(text);
+            li.appendChild(wrapper);
+            return li;
+        }
+
+        function createSidebarEmptyState() {
+            const li = document.createElement("li");
+            li.className = "group-item";
+            li.style.cursor = "default";
+            li.innerHTML = '<span class="group-name">No groups yet</span><span class="group-task-badge">0</span>';
+            return li;
+        }
+
+        function showTaskSkeleton() {
+            elements.urlList.innerHTML = "";
+            for (let index = 0; index < 4; index++) {
+                const item = document.createElement("li");
+                item.className = "skeleton";
+                elements.urlList.appendChild(item);
+            }
+        }
+
+        function renderHeaderState() {
+            if (!selectedGroup) {
+                elements.activeGroupEyebrow.textContent = "No group selected";
+                elements.activeGroupTitle.textContent = "Choose a group";
+                elements.activeGroupSubtitle.textContent = "Create or select a group, then add links you want to work through.";
+                return;
+            }
+
+            elements.activeGroupEyebrow.textContent = "Selected group";
+            elements.activeGroupTitle.textContent = selectedGroup;
+            elements.activeGroupSubtitle.textContent = selectedGroupMeta.dailyReset
+                ? "Daily reset is on. Completed daily tasks reset every morning."
+                : "Track links, due dates, completion, notes, reminders, and quick opening from one place.";
+        }
+
+        function renderTaskSummary(total, open, done, due) {
+            elements.totalCount.textContent = total;
+            elements.openCount.textContent = open;
+            elements.doneCount.textContent = done;
+            elements.dueCount.textContent = due;
+            elements.progressFill.style.width = total ? `${Math.round((done / total) * 100)}%` : "0%";
+        }
+
+        function normalizeTask(task) {
+            const normalizedUrl = task?.url || "";
+            return {
+                url: normalizedUrl,
+                title: task?.title || getReadableUrl(normalizedUrl),
+                favicon: task?.favicon || getFaviconUrl(normalizedUrl),
+                notes: task?.notes || "",
+                completed: task?.completed === true,
+                completedAt: task?.completedAt || "",
+                endDate: task?.endDate || "",
+                resetDaily: task?.resetDaily !== false,
+                order: Number(task?.order || task?.createdAt || Date.now()),
+                createdAt: task?.createdAt || Date.now(),
+                updatedAt: task?.updatedAt || ""
+            };
+        }
+
+        function normalizeGroup(group) {
+            if (typeof group === "boolean") {
+                return { done: group, dailyReset: true };
+            }
+
+            return {
+                done: group?.done === true,
+                dailyReset: group?.dailyReset !== false,
+                createdAt: group?.createdAt || "",
+                updatedAt: group?.updatedAt || ""
+            };
+        }
+
+        function getTaskCounts(tasksSnapshot) {
+            const counts = {};
+            if (!tasksSnapshot.exists()) {
+                return counts;
+            }
+
+            tasksSnapshot.forEach((group) => {
+                let count = 0;
+                group.forEach(() => {
+                    count++;
+                });
+                counts[group.key] = count;
+            });
+            return counts;
+        }
+
+        function getStats(rows, today) {
+            const stats = {
+                total: rows.length,
+                open: 0,
+                done: 0,
+                dueSoon: 0,
+                expired: 0
+            };
+
+            rows.forEach(({ task }) => {
+                if (task.completed) {
+                    stats.done++;
+                    return;
+                }
+
+                stats.open++;
+
+                if (isExpired(task.endDate, today)) {
+                    stats.expired++;
+                } else if (isDueSoon(task.endDate, today)) {
+                    stats.dueSoon++;
+                }
+            });
+
+            return stats;
+        }
+
+        function taskMatchesFilter(task, today) {
+            if (currentFilter === "active") {
+                return !task.completed;
+            }
+
+            if (currentFilter === "completed") {
+                return task.completed;
+            }
+
+            if (currentFilter === "due") {
+                return !task.completed && isDueSoon(task.endDate, today) && !isExpired(task.endDate, today);
+            }
+
+            if (currentFilter === "expired") {
+                return !task.completed && isExpired(task.endDate, today);
+            }
+
+            return true;
+        }
+
+        function taskMatchesSearch(task) {
+            if (!searchQuery) {
+                return true;
+            }
+
+            const value = `${getTaskDisplayTitle(task)} ${getReadableUrl(task.url)} ${task.notes}`.toLowerCase();
+            return value.includes(searchQuery.toLowerCase());
+        }
+
+        function canDrag() {
+            return currentFilter === "all" && !searchQuery;
+        }
+
+        async function reorderTasks(sourceKey, targetKey) {
+            const sourceIndex = listOfKeys.indexOf(sourceKey);
+            const targetIndex = listOfKeys.indexOf(targetKey);
+
+            if (sourceIndex < 0 || targetIndex < 0 || sourceIndex === targetIndex) {
+                return;
+            }
+
+            const orderedKeys = [...listOfKeys];
+            const orderedTasks = [...listOfUrls];
+            const [movedKey] = orderedKeys.splice(sourceIndex, 1);
+            const [movedTask] = orderedTasks.splice(sourceIndex, 1);
+            orderedKeys.splice(targetIndex, 0, movedKey);
+            orderedTasks.splice(targetIndex, 0, movedTask);
+
+            try {
+                await Promise.all(orderedKeys.map((key, index) => {
+                    return set(ref(db, `tasks/${selectedGroup}/${key}`), {
+                        ...orderedTasks[index],
+                        order: index + 1,
+                        updatedAt: Date.now()
+                    });
+                }));
+                await loadUrl();
+                showToast("Task order updated.");
+            } catch (error) {
+                console.error(error);
+                showToast("Could not reorder tasks.");
+            }
+        }
+
+        function clearDropTargets() {
+            document.querySelectorAll(".is-drop-target").forEach((item) => item.classList.remove("is-drop-target"));
+        }
+
+        async function updateTask(taskKey, nextTask, successMessage = "Task saved.") {
+            try {
+                await set(ref(db, `tasks/${selectedGroup}/${taskKey}`), nextTask);
+                await loadUrl();
+                showToast(successMessage);
+            } catch (error) {
+                console.error(error);
+                showToast("Could not update task.");
+            }
+        }
+
+        async function deleteTask(taskKey, task) {
+            try {
+                await remove(ref(db, `tasks/${selectedGroup}/${taskKey}`));
+                await loadUrl();
+                showToast("URL deleted.", {
+                    label: "Undo",
+                    action: async () => {
+                        await set(ref(db, `tasks/${selectedGroup}/${taskKey}`), task);
+                        await loadUrl();
+                        showToast("URL restored.");
+                    }
+                });
+            } catch (error) {
+                console.error(error);
+                showToast("Could not delete URL.");
+            }
+        }
+
+        async function deleteGroup(groupKey, groupMeta) {
+            const confirmation = prompt(`Type ${groupKey} to delete this group and all URLs inside it.`);
+
+            if ((confirmation || "").trim().toUpperCase() !== groupKey) {
+                showToast("Group name did not match.");
+                return;
+            }
+
+            try {
+                const tasksSnapshot = await get(ref(db, `tasks/${groupKey}`));
+                const deletedTasks = tasksSnapshot.exists() ? tasksSnapshot.val() : null;
+
+                await remove(ref(db, `groups/${groupKey}`));
+                await remove(ref(db, `tasks/${groupKey}`));
+
+                if (selectedGroup === groupKey) {
+                    selectedGroup = "";
+                    selectedGroupMeta = { done: false, dailyReset: true };
+                    localStorage.removeItem("group");
+                }
+
+                await loadGroup();
+                await loadUrl();
+                showToast(`Deleted "${groupKey}".`, {
+                    label: "Undo",
+                    action: async () => {
+                        await set(ref(db, `groups/${groupKey}`), groupMeta);
+                        if (deletedTasks) {
+                            await set(ref(db, `tasks/${groupKey}`), deletedTasks);
+                        }
+                        selectedGroup = groupKey;
+                        localStorage.setItem("group", groupKey);
+                        await loadGroup();
+                        await loadUrl();
+                        showToast("Group restored.");
+                    }
+                });
+            } catch (error) {
+                console.error(error);
+                showToast("Could not delete the group.");
+            }
+        }
+
+        function openEditor(taskKey, task) {
+            elements.editTaskKey.value = taskKey;
+            elements.editTitle.value = task.title || "";
+            elements.editUrl.value = replaceVariable(task.url);
+            elements.editNotes.value = task.notes || "";
+            elements.editDate.value = millisToDateInput(task.endDate);
+            elements.editResetDaily.checked = task.resetDaily !== false;
+            elements.editModal.hidden = false;
+            elements.editTitle.focus();
+        }
+
+        function closeEditor() {
+            elements.editModal.hidden = true;
+            elements.editForm.reset();
+        }
+
+        async function saveEditedTask(event) {
+            event.preventDefault();
+
+            const taskKey = elements.editTaskKey.value;
+            const index = listOfKeys.indexOf(taskKey);
+
+            if (index < 0) {
+                closeEditor();
+                showToast("Task was not found.");
+                return;
+            }
+
+            const previousTask = listOfUrls[index];
+            const url = normalizeUrl(elements.editUrl.value.trim().includes("{") ? saveVariable(elements.editUrl.value.trim()) : elements.editUrl.value.trim());
+
+            if (!url) {
+                showToast("URL is required.");
+                return;
+            }
+
+            const titleInput = elements.editTitle.value.trim();
+            const urlChanged = url !== previousTask.url;
+            const metadata = urlChanged && !titleInput ? await getUrlMetadata(url) : {
+                title: titleInput || previousTask.title || getReadableUrl(url),
+                favicon: urlChanged ? getFaviconUrl(url) : previousTask.favicon
+            };
+
+            const nextTask = {
+                ...previousTask,
+                url,
+                title: titleInput || metadata.title,
+                favicon: metadata.favicon || getFaviconUrl(url),
+                notes: elements.editNotes.value.trim(),
+                endDate: elements.editDate.value ? new Date(`${elements.editDate.value}T00:00:00`).getTime() : "",
+                resetDaily: elements.editResetDaily.checked,
+                updatedAt: Date.now()
+            };
+
+            closeEditor();
+            await updateTask(taskKey, nextTask, "Task edited.");
+        }
+
+        async function updateDailyResetSetting() {
+            if (!selectedGroup) {
+                return;
+            }
+
+            selectedGroupMeta = {
+                ...selectedGroupMeta,
+                dailyReset: elements.dailyResetToggle.checked,
+                updatedAt: Date.now()
+            };
+
+            try {
+                await set(ref(db, `groups/${selectedGroup}`), selectedGroupMeta);
+                renderHeaderState();
+                showToast(selectedGroupMeta.dailyReset ? "Daily reset enabled." : "Daily reset disabled.");
+            } catch (error) {
+                console.error(error);
+                showToast("Could not update daily reset.");
+            }
+        }
+
+        async function resetCompletedTasksIfNeeded(querySnapshot) {
+            if (!selectedGroupMeta.dailyReset) {
+                return false;
+            }
+
+            const today = startOfToday();
+            const resets = [];
+
+            querySnapshot.forEach((item) => {
+                const task = normalizeTask(item.val());
+                if (task.completed && task.resetDaily && Number(task.completedAt || 0) < today) {
+                    resets.push(set(ref(db, `tasks/${selectedGroup}/${item.key}`), {
+                        ...task,
+                        completed: false,
+                        completedAt: "",
+                        updatedAt: Date.now()
+                    }));
+                }
+            });
+
+            if (resets.length) {
+                await Promise.all(resets);
+                showToast(`${resets.length} completed task${resets.length > 1 ? "s" : ""} reset for today.`);
+                return true;
+            }
+
+            return false;
+        }
+
+        async function createTemplateGroup(template) {
+            if (!isValidFirebaseKey(template.key)) {
+                showToast("Template key is not valid.");
+                return;
+            }
+
+            try {
+                await set(ref(db, `groups/${template.key}`), { done: false, dailyReset: true, createdAt: Date.now() });
+
+                const existingSnapshot = await get(ref(db, `tasks/${template.key}`));
+                const existingCount = existingSnapshot.exists() ? Object.keys(existingSnapshot.val()).length : 0;
+
+                await Promise.all(template.tasks.map(async ([title, url, notes], index) => {
+                    const normalizedUrl = normalizeUrl(url);
+                    await push(ref(db, `tasks/${template.key}`), {
+                        url: normalizedUrl,
+                        title,
+                        favicon: getFaviconUrl(normalizedUrl),
+                        notes,
+                        completed: false,
+                        completedAt: "",
+                        endDate: "",
+                        resetDaily: true,
+                        order: existingCount + index + 1,
+                        createdAt: Date.now(),
+                        updatedAt: Date.now()
+                    });
+                }));
+
+                selectedGroup = template.key;
+                selectedGroupMeta = { done: false, dailyReset: true };
+                localStorage.setItem("group", selectedGroup);
+                location.hash = "app";
+                await loadGroup();
+                await loadUrl();
+                showToast(`${template.name} template added.`);
+            } catch (error) {
+                console.error(error);
+                showToast("Could not create template.");
+            }
+        }
+
+        async function seedAllTemplates() {
+            for (const template of TEMPLATES) {
+                await createTemplateGroup(template);
+            }
+            showToast("All templates added.");
+        }
+
+        async function exportJson() {
+            try {
+                const [groups, tasks] = await Promise.all([
+                    get(ref(db, "groups")),
+                    get(ref(db, "tasks"))
+                ]);
+
+                downloadFile("dailylink-export.json", JSON.stringify({
+                    exportedAt: new Date().toISOString(),
+                    version: 1,
+                    groups: groups.exists() ? groups.val() : {},
+                    tasks: tasks.exists() ? tasks.val() : {}
+                }, null, 2), "application/json");
+
+                showToast("JSON exported.");
+            } catch (error) {
+                console.error(error);
+                showToast("Could not export JSON.");
+            }
+        }
+
+        function exportCsv() {
+            if (!selectedGroup || !listOfUrls.length) {
+                showToast("Select a group with URLs first.");
+                return;
+            }
+
+            const headers = ["group", "title", "url", "notes", "completed", "due_date"];
+            const rows = listOfUrls.map((task) => [
+                selectedGroup,
+                task.title,
+                replaceVariable(task.url),
+                task.notes,
+                task.completed ? "true" : "false",
+                millisToDateInput(task.endDate)
+            ]);
+
+            const csv = [headers, ...rows].map((row) => row.map(escapeCsv).join(",")).join("\n");
+            downloadFile(`${selectedGroup.toLowerCase().replace(/\s+/g, "-")}-tasks.csv`, csv, "text/csv");
+            showToast("CSV exported.");
+        }
+
+        async function handleImportFile(event) {
+            const file = event.target.files?.[0];
+            event.target.value = "";
+
+            if (!file) {
+                return;
+            }
+
+            try {
+                const text = await file.text();
+                const name = file.name.toLowerCase();
+
+                if (name.endsWith(".json")) {
+                    await importJson(text);
+                } else if (name.endsWith(".html") || name.endsWith(".htm")) {
+                    await importBookmarks(text);
+                } else {
+                    await importCsv(text);
+                }
+
+                await loadGroup();
+                await loadUrl();
+            } catch (error) {
+                console.error(error);
+                showToast("Import failed. Check the file format.");
+            }
+        }
+
+        async function importJson(text) {
+            const data = JSON.parse(text);
+
+            if (data.groups || data.tasks) {
+                if (data.groups) {
+                    await set(ref(db, "groups"), data.groups);
+                }
+
+                if (data.tasks) {
+                    await set(ref(db, "tasks"), data.tasks);
+                }
+
+                showToast("JSON backup imported.");
+                return;
+            }
+
+            if (Array.isArray(data)) {
+                await importTasksIntoGroup(data.map((item) => ({
+                    title: item.title || "",
+                    url: item.url || "",
+                    notes: item.notes || ""
+                })));
+                return;
+            }
+
+            showToast("JSON did not contain DailyLink data.");
+        }
+
+        async function importCsv(text) {
+            const rows = parseCsv(text);
+            if (rows.length < 2) {
+                showToast("CSV is empty.");
+                return;
+            }
+
+            const headers = rows[0].map((header) => header.trim().toLowerCase());
+            const tasks = rows.slice(1).map((row) => {
+                const record = Object.fromEntries(headers.map((header, index) => [header, row[index] || ""]));
+                return {
+                    title: record.title || record.name || "",
+                    url: record.url || record.link || "",
+                    notes: record.notes || record.note || ""
+                };
+            }).filter((task) => task.url);
+
+            await importTasksIntoGroup(tasks);
+        }
+
+        async function importBookmarks(text) {
+            const doc = new DOMParser().parseFromString(text, "text/html");
+            const tasks = Array.from(doc.querySelectorAll("a[href]")).map((link) => ({
+                title: link.textContent.trim(),
+                url: link.href,
+                notes: "Imported bookmark"
+            }));
+
+            await importTasksIntoGroup(tasks);
+        }
+
+        async function importTasksIntoGroup(tasks) {
+            if (!tasks.length) {
+                showToast("No links found to import.");
+                return;
+            }
+
+            if (!selectedGroup) {
+                selectedGroup = "IMPORTED LINKS";
+                selectedGroupMeta = { done: false, dailyReset: true };
+                localStorage.setItem("group", selectedGroup);
+                await set(ref(db, `groups/${selectedGroup}`), { done: false, dailyReset: true, createdAt: Date.now() });
+            }
+
+            const existingCount = listOfUrls.length;
+            await Promise.all(tasks.map(async (task, index) => {
+                const url = normalizeUrl(task.url);
+                await push(ref(db, `tasks/${selectedGroup}`), {
+                    url,
+                    title: task.title || getReadableUrl(url),
+                    favicon: getFaviconUrl(url),
+                    notes: task.notes || "",
+                    completed: false,
+                    completedAt: "",
+                    endDate: "",
+                    resetDaily: true,
+                    order: existingCount + index + 1,
+                    createdAt: Date.now(),
+                    updatedAt: Date.now()
+                });
+            }));
+
+            showToast(`${tasks.length} link${tasks.length > 1 ? "s" : ""} imported.`);
+        }
+
+        async function getUrlMetadata(url) {
+            const finalUrl = replaceVariable(url);
+            const fallback = {
+                title: getReadableUrl(url),
+                favicon: getFaviconUrl(url)
+            };
+
+            try {
+                const controller = new AbortController();
+                const timeout = window.setTimeout(() => controller.abort(), 4200);
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(finalUrl)}`;
+                const response = await fetch(proxyUrl, { signal: controller.signal });
+                window.clearTimeout(timeout);
+
+                if (!response.ok) {
+                    return fallback;
+                }
+
+                const html = await response.text();
+                const doc = new DOMParser().parseFromString(html, "text/html");
+                const title = doc.querySelector("title")?.textContent?.trim()
+                    || doc.querySelector('meta[property="og:title"]')?.content?.trim()
+                    || doc.querySelector('meta[name="twitter:title"]')?.content?.trim()
+                    || fallback.title;
+                const icon = doc.querySelector('link[rel~="icon"]')?.getAttribute("href")
+                    || doc.querySelector('link[rel="apple-touch-icon"]')?.getAttribute("href")
+                    || fallback.favicon;
+
+                return {
+                    title: title.slice(0, 140),
+                    favicon: absolutizeUrl(icon, finalUrl) || fallback.favicon
+                };
+            } catch {
+                return fallback;
+            }
+        }
+
+        function saveVariable(url) {
+            return url.replace(/\{([^:{}]+):([^{}]+)\}/g, (_, key, value) => {
+                const cleanKey = key.trim();
+                const cleanValue = value.trim();
+
+                if (!cleanKey || !cleanValue) {
+                    return `{${key}:${value}}`;
+                }
+
+                localStorage.setItem(cleanKey, cleanValue);
+                return `{${cleanKey}}`;
+            });
+        }
+
+        function replaceVariable(url) {
+            return String(url || "").replace(/\{([^{}:]+)\}/g, (_, key) => {
+                return localStorage.getItem(key.trim()) || "";
+            });
+        }
+
+        function normalizeUrl(value) {
+            const trimmed = String(value || "").trim();
+
+            if (!trimmed) {
+                return "";
+            }
+
+            if (/^https?:\/\//i.test(trimmed)) {
+                return trimmed;
+            }
+
+            return `https://${trimmed}`;
+        }
+
+        function isOpenableUrl(value) {
+            return /^https?:\/\//i.test(replaceVariable(value));
+        }
+
+        function openUrls(url) {
+            if (url) {
+                const finalUrl = replaceVariable(url);
+
+                if (isOpenableUrl(finalUrl)) {
+                    window.open(finalUrl, "_blank", "noopener");
+                } else {
+                    showToast("Only HTTP links can be opened.");
+                }
+
+                return;
+            }
+
+            listOfUrls
+                .filter((task) => !task.completed && isOpenableUrl(task.url))
+                .forEach((task) => window.open(replaceVariable(task.url), "_blank", "noopener"));
+        }
+
+        async function enableNotifications() {
+            if (!("Notification" in window)) {
+                showToast("Browser notifications are not supported here.");
+                return;
+            }
+
+            const permission = await Notification.requestPermission();
+            if (permission === "granted") {
+                showToast("Reminders enabled.");
+                checkReminders(true);
+            } else {
+                showToast("Notification permission was not granted.");
+            }
+        }
+
+        function startReminderLoop() {
+            window.setInterval(() => checkReminders(), 60000);
+        }
+
+        function checkReminders(force = false) {
+            if (!("Notification" in window) || Notification.permission !== "granted" || !selectedGroup) {
+                return;
+            }
+
+            const today = startOfToday();
+            const todayKey = new Date(today).toISOString().slice(0, 10);
+
+            listOfUrls.forEach((task, index) => {
+                if (task.completed || !task.endDate || (!isExpired(task.endDate, today) && !isDueSoon(task.endDate, today))) {
+                    return;
+                }
+
+                const reminderKey = `reminded:${selectedGroup}:${listOfKeys[index]}:${todayKey}`;
+                if (!force && localStorage.getItem(reminderKey)) {
+                    return;
+                }
+
+                localStorage.setItem(reminderKey, "1");
+                new Notification(getTaskDisplayTitle(task), {
+                    body: isExpired(task.endDate, today) ? "This URL is expired." : "This URL is due soon.",
+                    icon: task.favicon || "./icon.svg",
+                    tag: reminderKey
+                });
+            });
+        }
+
+        async function installPwa() {
+            if (!deferredInstallPrompt) {
+                showToast("Install is available after the browser detects the PWA.");
+                return;
+            }
+
+            deferredInstallPrompt.prompt();
+            await deferredInstallPrompt.userChoice;
+            deferredInstallPrompt = null;
+            elements.installButton.hidden = true;
+        }
+
+        function registerServiceWorker() {
+            if ("serviceWorker" in navigator && location.protocol !== "file:") {
+                navigator.serviceWorker.register("./sw.js").catch((error) => {
+                    console.warn("Service worker registration failed", error);
+                });
+            }
+        }
+
+        function getGas() {
+            fetch("https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=2M1WXTYFPYCYJ4HMB4BJ61EIUI8JTZ8C9H")
+                .then((response) => response.json())
+                .then((data) => {
+                    const price = Number(data?.result?.ProposeGasPrice);
+
+                    if (!Number.isFinite(price)) {
+                        return;
+                    }
+
+                    gasHistory = [...gasHistory, price].slice(-18);
+                    localStorage.setItem("gasHistory", JSON.stringify(gasHistory));
+                    document.title = `${price} Gwei - DailyLink`;
+                    elements.gasText.textContent = `Average Gwei: ${price}`;
+                    elements.gasPill.classList.remove("gas-low", "gas-medium", "gas-high");
+                    elements.gasPill.classList.add(price < 20 ? "gas-low" : price < 55 ? "gas-medium" : "gas-high");
+                    renderGasSparkline();
+                })
+                .catch(() => {
+                    elements.gasText.textContent = "Gwei unavailable";
+                    elements.gasSparkline.innerHTML = "";
+                });
+        }
+
+        function renderGasSparkline() {
+            if (gasHistory.length < 2) {
+                elements.gasSparkline.innerHTML = "";
+                return;
+            }
+
+            const min = Math.min(...gasHistory);
+            const max = Math.max(...gasHistory);
+            const range = Math.max(max - min, 1);
+            const points = gasHistory.map((value, index) => {
+                const x = (index / (gasHistory.length - 1)) * 72 + 2;
+                const y = 22 - ((value - min) / range) * 18;
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+            }).join(" ");
+
+            elements.gasSparkline.innerHTML = `<polyline points="${points}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>`;
+        }
+
+        function getTaskDisplayTitle(task) {
+            return task.title || getReadableUrl(task.url);
+        }
+
+        function getReadableUrl(url) {
+            const finalUrl = replaceVariable(url);
+            try {
+                const parsed = new URL(finalUrl);
+                return `${parsed.hostname}${parsed.pathname === "/" ? "" : parsed.pathname}`.replace(/^www\./, "");
+            } catch {
+                return finalUrl || "Untitled link";
+            }
+        }
+
+        function getFaviconUrl(url) {
+            try {
+                const parsed = new URL(replaceVariable(url));
+                return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(parsed.hostname)}&sz=64`;
+            } catch {
+                return "./icon.svg";
+            }
+        }
+
+        function absolutizeUrl(value, baseUrl) {
+            if (!value) {
+                return "";
+            }
+
+            try {
+                return new URL(value, baseUrl).href;
+            } catch {
+                return "";
+            }
+        }
+
+        function appendHighlightedText(element, text, query) {
+            element.textContent = "";
+            const value = String(text || "");
+
+            if (!query) {
+                element.textContent = value;
+                return;
+            }
+
+            const lowerValue = value.toLowerCase();
+            const lowerQuery = query.toLowerCase();
+            const start = lowerValue.indexOf(lowerQuery);
+
+            if (start < 0) {
+                element.textContent = value;
+                return;
+            }
+
+            element.append(document.createTextNode(value.slice(0, start)));
+            const mark = document.createElement("mark");
+            mark.textContent = value.slice(start, start + query.length);
+            element.append(mark);
+            element.append(document.createTextNode(value.slice(start + query.length)));
+        }
+
+        function millisToDDMMYY(millis) {
+            if (!millis) {
+                return "";
+            }
+
+            const date = new Date(Number(millis));
+            const day = String(date.getDate()).padStart(2, "0");
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const year = String(date.getFullYear()).slice(-2);
+
+            return `${day}/${month}/${year}`;
+        }
+
+        function millisToDateInput(millis) {
+            if (!millis) {
+                return "";
+            }
+
+            const date = new Date(Number(millis));
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getDate()).padStart(2, "0");
+
+            return `${year}-${month}-${day}`;
+        }
+
+        function startOfToday() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return today.getTime();
+        }
+
+        function daysBetweenMillis(date1Ms, date2Ms) {
+            const oneDay = 1000 * 60 * 60 * 24;
+            return Math.round(Math.abs(Number(date1Ms) - Number(date2Ms)) / oneDay);
+        }
+
+        function isDueSoon(endDate, today) {
+            if (!endDate) {
+                return false;
+            }
+
+            return Number(endDate) >= today && daysBetweenMillis(endDate, today) < DUE_SOON_DAYS;
+        }
+
+        function isExpired(endDate, today) {
+            return Boolean(endDate) && Number(endDate) < today;
+        }
+
+        function getDateStatusClass(endDate, today) {
+            if (isExpired(endDate, today)) {
+                return "status-danger";
+            }
+
+            if (isDueSoon(endDate, today)) {
+                return "status-warning";
+            }
+
+            return "status-normal";
+        }
+
+        function getDatePillClass(endDate, today) {
+            if (isExpired(endDate, today)) {
+                return "is-danger";
+            }
+
+            if (isDueSoon(endDate, today)) {
+                return "is-warning";
+            }
+
+            return "";
+        }
+
+        function checkIfExists(url) {
+            return listOfUrls.some((task) => task.url === url);
+        }
+
+        function isValidFirebaseKey(value) {
+            return !/[.#$/[\]]/.test(value);
+        }
+
+        function escapeCsv(value) {
+            const text = String(value ?? "");
+            return `"${text.replace(/"/g, '""')}"`;
+        }
+
+        function parseCsv(text) {
+            const rows = [];
+            let row = [];
+            let field = "";
+            let inQuotes = false;
+
+            for (let index = 0; index < text.length; index++) {
+                const char = text[index];
+                const next = text[index + 1];
+
+                if (char === '"' && inQuotes && next === '"') {
+                    field += '"';
+                    index++;
+                    continue;
+                }
+
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                    continue;
+                }
+
+                if (char === "," && !inQuotes) {
+                    row.push(field);
+                    field = "";
+                    continue;
+                }
+
+                if ((char === "\n" || char === "\r") && !inQuotes) {
+                    if (char === "\r" && next === "\n") {
+                        index++;
+                    }
+                    row.push(field);
+                    rows.push(row);
+                    row = [];
+                    field = "";
+                    continue;
+                }
+
+                field += char;
+            }
+
+            row.push(field);
+            rows.push(row);
+            return rows.filter((item) => item.some((cell) => cell.trim()));
+        }
+
+        function downloadFile(filename, content, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        }
+
+        function showToast(message, actionConfig = null) {
+            elements.toastMessage.textContent = message;
+            elements.toastAction.hidden = !actionConfig;
+            elements.toastAction.textContent = actionConfig?.label || "Undo";
+            elements.toastAction.onclick = actionConfig ? actionConfig.action : null;
+            elements.toast.classList.add("is-visible");
+
+            clearTimeout(toastTimeout);
+
+            toastTimeout = setTimeout(() => {
+                elements.toast.classList.remove("is-visible");
+            }, actionConfig ? 5200 : 2600);
+        }
+    </script>
+</body>
+
+</html>
